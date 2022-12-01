@@ -9,9 +9,9 @@ pub fn d1_task1() {
 
     let elf_heap = make_heap(path_to_input);
 
-    let elf_max = elf_heap.peek().unwrap();
+    let elf_max = elf_heap.peek().unwrap().clone();
 
-    println!("{:?}", elf_max)
+    println!("Most packed elf: {}", elf_max)
 }
 
 pub fn d2_task() {
