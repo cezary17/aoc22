@@ -19,20 +19,17 @@ pub fn d2_task() {
 
     let mut elf_heap = make_heap(path_to_input);
 
-    let elf_max_1 = elf_heap.peek().unwrap().clone();
-    elf_heap.pop();
+    let elf_max_1 = elf_heap.pop().unwrap();
 
-    let elf_max_2 = elf_heap.peek().unwrap().clone();
-    elf_heap.pop();
+    let elf_max_2 = elf_heap.pop().unwrap();
 
-    let elf_max_3 = elf_heap.peek().unwrap().clone();
+    let elf_max_3 = elf_heap.pop().unwrap();
 
     let total = elf_max_1 + elf_max_2 + elf_max_3;
 
     println!("Total: {}", total)
 
 }
-
 
 fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
     let file = File::open(filename).expect("no such file");
