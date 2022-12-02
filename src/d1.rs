@@ -1,8 +1,7 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
-use std::path::Path;
 use std::collections::BinaryHeap;
+use crate::line_reader::lines_from_file;
 
+#[allow(dead_code)]
 pub fn d1_task1() {
 
     let path_to_input = "src/input_sources/day1_input.txt";
@@ -14,6 +13,7 @@ pub fn d1_task1() {
     println!("Most packed elf: {}", elf_max)
 }
 
+#[allow(dead_code)]
 pub fn d2_task() {
     let path_to_input = "src/input_sources/day1_input.txt";
 
@@ -30,15 +30,7 @@ pub fn d2_task() {
     println!("Total: {}", total)
 
 }
-
-fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
-    let file = File::open(filename).expect("no such file");
-    let buf = BufReader::new(file);
-    buf.lines()
-        .map(|l| l.expect("Could not parse line"))
-        .collect()
-}
-
+#[allow(dead_code)]
 fn make_heap(path: &str) -> BinaryHeap<i32> {
     let calories =  lines_from_file(path);
     let mut elf_heap: BinaryHeap<i32> = BinaryHeap::new();
