@@ -21,7 +21,7 @@ use crate::line_reader::lines_from_file;
     6 -> Win
 
  */
-
+#[allow(dead_code)]
 pub fn task1() {
     let path_to_input = "src/input_sources/day2_input.txt";
     let input = lines_from_file(path_to_input);
@@ -66,7 +66,7 @@ pub fn task1() {
     6 -> Win
 
  */
-
+#[allow(dead_code)]
 pub fn task2() {
     let path_to_input = "src/input_sources/day2_input.txt";
     let input = lines_from_file(path_to_input);
