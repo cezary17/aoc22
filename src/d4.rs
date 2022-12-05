@@ -1,5 +1,6 @@
 use crate::line_reader::lines_from_file;
 
+#[allow(dead_code)]
 pub fn task1() {
     let path: &str = "src/input_sources/day4_input.txt";
     let input: Vec<String> = lines_from_file(path);
@@ -18,7 +19,7 @@ pub fn task1() {
     println!("{counter}")
 }
 
-
+#[allow(dead_code)]
 pub fn task2() {
     let path: &str = "src/input_sources/day4_input.txt";
     let input: Vec<String> = lines_from_file(path);
@@ -37,6 +38,7 @@ pub fn task2() {
     println!("{counter}")
 }
 
+#[allow(dead_code)]
 fn contained_check (ranges: &Vec<Vec<i32>>) -> bool {
     //split ranges into a and b vectors
     let  a: Vec<i32> = Vec::from_iter(ranges[0].clone());
@@ -51,6 +53,7 @@ fn contained_check (ranges: &Vec<Vec<i32>>) -> bool {
     }
 }
 
+#[allow(dead_code)]
 fn overlap_check (ranges: &Vec<Vec<i32>>) -> bool {
     //split ranges into a and b vectors
     let  a: Vec<i32> = Vec::from_iter(ranges[0].clone());
