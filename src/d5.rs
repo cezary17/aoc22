@@ -1,5 +1,6 @@
 use crate::line_reader::lines_from_file;
 
+#[allow(dead_code)]
 pub fn task1() {
     let path: &str = "src/input_sources/day5_input.txt";
     let input: Vec<String> = lines_from_file(path);
@@ -67,6 +68,7 @@ pub fn task1() {
     println!("{acc}")
 }
 
+#[allow(dead_code)]
 pub fn task2() {
     let path: &str = "src/input_sources/day5_input.txt";
     let input: Vec<String> = lines_from_file(path);
