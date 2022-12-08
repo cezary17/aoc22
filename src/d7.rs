@@ -1,6 +1,7 @@
 use crate::line_reader::lines_from_file;
 use std::collections::BTreeMap;
 
+#[allow(dead_code)]
 pub fn task1(path: &str) -> i64 {
     let input = lines_from_file(path);
 
@@ -50,6 +51,7 @@ pub fn task1(path: &str) -> i64 {
     println!("Sum: {}", sum);
     sum
 }
+#[allow(dead_code)]
 pub fn task2(path: &str) -> i64 {
     let input = lines_from_file(path);
 
@@ -100,7 +102,7 @@ pub fn task2(path: &str) -> i64 {
     
     let curr_size = MAX_SIZE - dir_map.get("/").unwrap();
     
-    let mut smallest_dir = dir_map.iter().filter(|(_, &size)| size > UPDATE_SIZE - curr_size).map(|(_, size)| size).min().unwrap().clone();
+    let smallest_dir = dir_map.iter().filter(|(_, &size)| size > UPDATE_SIZE - curr_size).map(|(_, size)| size).min().unwrap().clone();
     println!("Smallest dir: {}", smallest_dir);
     smallest_dir
 }   
