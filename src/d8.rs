@@ -224,6 +224,6 @@ pub fn task2(input: &str) -> i32 {
 
     let max_score = hidden_trees.iter().map(|row| row.iter().max().unwrap()).max().unwrap();
     println!("max score: {}", max_score);
-    println!("max score index: {:?}", max_height_index);
+    // println!("max score index: {:?}", max_height_index);
     *max_score
 }
