@@ -69,6 +69,7 @@ fn debug_printer(coordinates: &Vec<(i32, i32)>) {
     }
 }
 
+#[allow(dead_code)]
 pub fn task1(path: &str) -> i32 {
     let input = lines_from_file(path);
     
@@ -82,7 +83,7 @@ pub fn task1(path: &str) -> i32 {
     for line in input {
         let line_vec = line.split_whitespace().collect::<Vec<&str>>();
         let (direction, distance) = (line_vec[0], line_vec[1].parse::<i32>().unwrap());
-        for movement in 0..distance {
+        for _ in 0..distance {
             match direction {
                 "R" => head_position.0 += 1,
                 "L" => head_position.0 -= 1,
@@ -93,32 +94,22 @@ pub fn task1(path: &str) -> i32 {
             let touching = touching_spaces(tail_position);
             if !touching.contains(&head_position) {
                 tail_position = chase_head(head_position, tail_position);
-                // insert into tail counter if not already there
                 if !tail_counter.contains(&tail_position) {
                     tail_counter.push(tail_position);
                 }
             }
-            // here i need to check whether the tail is still touching the head
-            // if it is -> dont do nothing
-            // if it is not -> move tail in the direction of the head
-            
-            // println!("Direction: {}, Distance: {}", direction, distance);
-            // println!("Head: {:?}", head_position);
-            // println!("Tail: {:?}", tail_position);
         }
         
     }
-    // println!("Tail counter: {:?}", tail_counter);
-    // debug_printer(&tail_counter);
     println!("Tail counter length: {}", tail_counter.len());
     tail_counter.len() as i32
     
 } 
 
+#[allow(dead_code)]
 pub fn task2(path: &str) -> i32 {
     let input = lines_from_file(path);
 
-    // starting position of head and all 9 tails is [0,0]
     let mut head_position = (0,0);
     let mut tails: Vec<(i32, i32)> = vec![(0, 0); 9];
     
@@ -129,7 +120,6 @@ pub fn task2(path: &str) -> i32 {
         let line_vec = line.split_whitespace().collect::<Vec<&str>>();
         let (direction, distance) = (line_vec[0], line_vec[1].parse::<i32>().unwrap());
         for movement in 0..distance {
-            // println!("Direction: {}, Distance: {}, movement: {}" , direction, distance, movement);
             match direction {
                 "R" => head_position.0 += 1,
                 "L" => head_position.0 -= 1,
@@ -141,29 +131,18 @@ pub fn task2(path: &str) -> i32 {
             let mut current_head = head_position.clone();
             
             for i in 0..tails.len() {
-                    // println!("Current head: {:?}", current_head);
                     let touching = touching_spaces(tails[i]);
                     if !touching.contains(&current_head) {
                         tails[i] = chase_head(current_head, tails[i]);
-                        // insert into tail counter if not already there
                         if (!tail_counter.contains(&tails[i])) && i == tails.len() - 1 {
-                            // println!("Tail: {:?}", tails[i]);
                             tail_counter.push(tails[i]);
                         }
                     }
-                    
-                    // println!("Tail: {:?}, i: {:?}\n", tails[i], i);                
                     current_head = tails[i];
             }
-            // let mut debug_vec = tails.to_vec().clone();
-            // debug_vec.push(head_position);
-            // debug_printer(&debug_vec);
-            // println!("\n");
         }
     }
-    // println!("Tail counter: {:?}", tail_counter);
     println!("Tail counter length: {}", tail_counter.len());
-    // debug_printer(&tail_counter);
     tail_counter.len() as i32
 
 }
