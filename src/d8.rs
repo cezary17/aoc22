@@ -129,7 +129,7 @@ pub fn task2(input: &str) -> i32 {
     let mut hidden_trees: Vec<Vec<i32>> = Vec::new();
 
     hidden_trees.push(vec![0; trees[0].len()]);
-    let mut max_height_index = [0,0];
+    // let mut max_height_index = [0,0];
     let mut max_height = 0;
     for i in 1..trees.len()-1 {
         let mut row: Vec<i32> = Vec::new();
@@ -213,7 +213,7 @@ pub fn task2(input: &str) -> i32 {
             let combined_score = scenic_score.iter().product();
             if combined_score > max_height {
                 max_height = combined_score;
-                max_height_index = [i, j];
+                // max_height_index = [i, j];
             }
             row.push(combined_score);
         }
