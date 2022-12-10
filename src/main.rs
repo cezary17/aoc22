@@ -9,19 +9,19 @@ mod d6;
 mod d7;
 mod d8;
 mod d9;
+mod d10;
 
 
 fn main() {
-    let path = "src/input_sources/day9_input.txt";
-    let test_path = "src/input_sources/day9_test.txt";
-    let test_path2 = "src/input_sources/day9_test2.txt";
+    let path = "src/input_sources/day10_input.txt";
+    let test_path = "src/input_sources/day10_test.txt";
     
-    println!("Day 9 Task 1");
-    d9::task1(path);
-    println!("Day 9 Task 2");
-    d9::task2(path);
+    println!("Day 10 Task 1");
+    d10::task1(path);
+    println!("Day 10 Task 2");
+    d10::task2(path);
     
     // println!("Debug");
-    // d9::task1(test_path);
-    // d9::task2(test_path2);
+    // d10::task1(test_path);
+    // d9::task2(test_path);
 }
