@@ -69,10 +69,10 @@ pub fn task2(path: &str){
     
     for val in opqueue {
         if cpu.register_x - 1 <= cpu.curr_index && cpu.curr_index <= cpu.register_x + 1 {
-            buf.push("#")
+            buf.push("⬜️")
         }
         else {
-            buf.push(".")
+            buf.push("⬛️")
         }
         
         cpu.curr_index += 1;
