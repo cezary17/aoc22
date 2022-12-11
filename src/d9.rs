@@ -50,6 +50,7 @@ fn chase_head(head_pos: (i32, i32), tail_pos: (i32, i32)) -> (i32, i32) {
     res
 }
 
+#[allow(dead_code)]
 fn debug_printer(coordinates: &Vec<(i32, i32)>) {
     let mut grid = [['.'; 100]; 100];
 
@@ -119,7 +120,7 @@ pub fn task2(path: &str) -> i32 {
     for line in input {
         let line_vec = line.split_whitespace().collect::<Vec<&str>>();
         let (direction, distance) = (line_vec[0], line_vec[1].parse::<i32>().unwrap());
-        for movement in 0..distance {
+        for _ in 0..distance {
             match direction {
                 "R" => head_position.0 += 1,
                 "L" => head_position.0 -= 1,

@@ -1,14 +1,14 @@
 use crate::line_reader::lines_from_file;
 use std::collections::VecDeque;
 
-struct register {
+struct Register {
     register_x: i32,
     curr_index: i32,
 }
 
-impl Default for register {
+impl Default for Register {
     fn default() -> Self {
-        register {
+        Register {
             register_x: 1,
             curr_index: 0,
         }
@@ -41,7 +41,7 @@ pub fn task1(path: &str) -> i32 {
     
     let opqueue = parse_instructions(&input);
     
-    let mut register = register::default(); 
+    let mut register = Register::default(); 
     
     let mut signal_strengths: Vec<i32> = Vec::new();
     
@@ -62,7 +62,7 @@ pub fn task2(path: &str){
     
     let opqueue = parse_instructions(&input);
     
-    let mut cpu = register::default();
+    let mut cpu = Register::default();
     
     let mut output: Vec<String> = Vec::new();
     let mut buf = Vec::new();
