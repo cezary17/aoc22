@@ -1,6 +1,7 @@
 use crate::line_reader::lines_from_file;
 use std::collections::VecDeque;
 
+#[allow(dead_code)]
 struct Register {
     register_x: i32,
     curr_index: i32,
@@ -15,6 +16,7 @@ impl Default for Register {
     }
 }
 
+#[allow(dead_code)]
 fn parse_instructions(input: &Vec<String>) -> VecDeque<i32> {
     // splitting the input lines
     let input: Vec<Vec<&str>> = input.iter().map(|x| x.split_whitespace().collect()).collect();
@@ -36,6 +38,7 @@ fn parse_instructions(input: &Vec<String>) -> VecDeque<i32> {
     opqueue
 }
 
+#[allow(dead_code)]
 pub fn task1(path: &str) -> i32 {
     let input: Vec<String> = lines_from_file(path);
     
@@ -57,6 +60,7 @@ pub fn task1(path: &str) -> i32 {
     output
 }
 
+#[allow(dead_code)]
 pub fn task2(path: &str){
     let input = lines_from_file(path);
     

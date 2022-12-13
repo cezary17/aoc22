@@ -16,6 +16,7 @@ fn touching_spaces(position: (i32, i32)) -> Vec<(i32, i32)> {
 
 fn chase_head(head_pos: (i32, i32), tail_pos: (i32, i32)) -> (i32, i32) {
     // linear movements first
+    #[allow(unused_assignments)]
     let mut res = (0,0);
     if head_pos.0 == tail_pos.0 {
         if head_pos.1 > tail_pos.1 {

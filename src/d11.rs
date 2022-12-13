@@ -23,6 +23,7 @@ impl Default for Monkey {
     }
 }
 
+#[allow(dead_code)]
 pub fn generator(path: &str) -> Vec<Monkey> {
     let input = lines_from_file(path);
 
@@ -31,7 +32,7 @@ pub fn generator(path: &str) -> Vec<Monkey> {
     
     for line in input {
         let line = line.trim();
-        let mut line_vec:Vec<&str> = line.split_whitespace().collect();
+        let line_vec:Vec<&str> = line.split_whitespace().collect();
         if line_vec.len() == 0 {
             parsed_input.push(curr_monkey_vec);
             curr_monkey_vec = Vec::new();
@@ -43,7 +44,7 @@ pub fn generator(path: &str) -> Vec<Monkey> {
     
     let mut monkeys: Vec<Monkey> = Vec::new();
     for _ in &parsed_input {
-        let mut monkey_obj = Monkey::default();
+        let monkey_obj = Monkey::default();
         monkeys.push(monkey_obj);
     }
 
@@ -101,6 +102,7 @@ pub fn generator(path: &str) -> Vec<Monkey> {
     monkeys
 }
 
+#[allow(dead_code)]
 pub fn task1(path: &str) -> u64 {
     let mut monkeys = generator(path);
     
@@ -111,7 +113,7 @@ pub fn task1(path: &str) -> u64 {
         for monkey in &mut monkeys {
             
             if changes_stacks[monkey.monkey_tag as usize].len() > 0 {
-                let mut changes = changes_stacks[monkey.monkey_tag as usize].clone();
+                let changes = changes_stacks[monkey.monkey_tag as usize].clone();
                 changes_stacks[monkey.monkey_tag as usize] = vec![];
                 for change in changes {
                     monkey.items.push(change);
@@ -158,6 +160,7 @@ pub fn task1(path: &str) -> u64 {
     result
 }
 
+#[allow(dead_code)]
 fn find_gcd(a: u64, b: u64) -> u64 {
     if b == 0 {
         a
@@ -166,10 +169,12 @@ fn find_gcd(a: u64, b: u64) -> u64 {
     }
 }
 
+#[allow(dead_code)]
 fn find_lcm(a: u64, b: u64) -> u64 {
     (a * b) / find_gcd(a, b)
 }
 
+#[allow(dead_code)]
 pub fn task2(path: &str) -> u64 {
     let mut monkeys = generator(path);
 
@@ -184,7 +189,7 @@ pub fn task2(path: &str) -> u64 {
         for monkey in &mut monkeys {
 
             if changes_stacks[monkey.monkey_tag as usize].len() > 0 {
-                let mut changes = changes_stacks[monkey.monkey_tag as usize].clone();
+                let changes = changes_stacks[monkey.monkey_tag as usize].clone();
                 changes_stacks[monkey.monkey_tag as usize] = vec![];
                 for change in changes {
                     monkey.items.push(change);
