@@ -1,7 +1,5 @@
 use crate::line_reader::lines_from_file;
 use std::collections::VecDeque;
-use std::fs::File;
-use std::io::Write;
 use itertools::Itertools;
 
 #[allow(dead_code)]

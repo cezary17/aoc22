@@ -23,12 +23,12 @@ fn main() {
     #[allow(unused_variables)]
     let test_path = "input_test/day13_test.txt";
     
-    // println!("Day 13 Task 1");
-    // d13::task1(path);
-    // println!("Day 13 Task 2");
-    // d13::task2(path);
+    println!("Day 13 Task 1");
+    d13::task1(path);
+    println!("Day 13 Task 2");
+    d13::task2(path);
     
-    println!("Debug");
-    d13::task1(test_path);
+    // println!("Debug");
+    // d13::task1(test_path);
     // d13::task2(test_path);
 }

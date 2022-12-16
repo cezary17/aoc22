@@ -1,19 +1,46 @@
+use serde::Deserialize;
+use std::cmp::Ordering;
 use crate::line_reader::lines_from_file;
-use std::collections::VecDeque;
-use std::convert::TryFrom;
-use std::convert::TryInto;
-use nom::bytes::complete::tag;
-use nom::character::is_digit;
-use nom::IResult;
-use nom::multi::separated_list1;
 
-fn parse_input(path: &str) -> Vec<(String, String)> {
+#[derive(Debug, Clone, Deserialize)]
+#[serde(untagged)]
+enum Packet {
+    Term(u8),
+    Complex(Vec<Packet>),
+}
+
+impl Eq for Packet {}
+
+impl PartialEq<Self> for Packet {
+    fn eq(&self, other: &Self) -> bool {
+        self.cmp(other) == Ordering::Equal
+    }
+}
+
+impl PartialOrd<Self> for Packet {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for Packet {
+    fn cmp(&self, other: &Self) -> Ordering {
+        match (self, other) {
+            (Packet::Term(a), Packet::Term(b)) => a.cmp(b),
+            (Packet::Complex(a), Packet::Complex(b)) => a.cmp(b),
+            (Packet::Term(a), Packet::Complex(b)) => [Packet::Term(*a)][..].cmp(b),
+            (Packet::Complex(a), Packet::Term(b)) => a.as_slice().cmp(&[Packet::Term(*b)]),
+        }
+    }
+}
+
+fn parse_input_task1(path: &str) -> Vec<(String, String)> {
     let input = lines_from_file(path);
     let mut output = Vec::new();
-    let mut curr_vec:Vec<String> = Vec::new();
+    let mut curr_vec: Vec<String> = Vec::new();
     for line in input {
         if line == "" {
-            let tuple:(String, String) = (curr_vec[0].clone(), curr_vec[1].clone());
+            let tuple: (String, String) = (curr_vec[0].clone(), curr_vec[1].clone());
             output.push(tuple);
             curr_vec = Vec::new();
         } else {
@@ -23,33 +50,42 @@ fn parse_input(path: &str) -> Vec<(String, String)> {
     output
 }
 
-fn parse_list(s: &str) -> IResult<&str, Vec<&str>> {
-    separated_list1(tag(","), s)(s)
+fn parse_input_task2(path: &str) -> Vec<String> {
+    let mut input = lines_from_file(path);
+    input.into_iter().filter(|x| x != "").collect::<Vec<String>>()
 }
 
 pub fn task1(path: &str) -> i32 {
-    let input = parse_input(path);
-    let output = 0;
-    
-    for (index, line) in input.iter().enumerate() {
-        let res = false;
-        
-        let line0 = parse_list(&line.0);
-        println!("{:?}", line0.unwrap().1);
-        
-        // let line_0 = line.0.clone().chars().filter(|c| c == ",").collect::<String>();
-        // let mut line_0_chars: VecDeque<char> = line_0.chars().collect::<VecDeque<char>>();
-        // line_0_chars.pop_front();
-        // line_0_chars.pop_back();
-        
-        
-        // let line_1 = line.1.clone().chars().filter(|c| c == ",").collect::<String>();
-        // let mut line_1_chars: VecDeque<char> = line_1.chars().collect::<VecDeque<char>>();
-        // line_1_chars.pop_front();
-        // line_1_chars.pop_back();
-        
-        if res {let output = output + 1;}
-        // println!("Line 0: {:?} Line 1: {:?}", line_0_chars, line_1_chars);
+    let input = parse_input_task1(path);
+    let packets = input.iter().map(|(a, b)| (serde_json::from_str::<Packet>(&a).unwrap(), serde_json::from_str::<Packet>(&b).unwrap())).collect::<Vec<(Packet, Packet)>>();
+    let mut count = 1;
+    let mut res = 0;
+    for (a, b) in packets {
+        if a < b {
+            res += count;
+        }
+        count += 1;
     }
-    0
+    println!("Result: {}", res);
+    res
+}
+
+pub fn task2(path: &str) -> i32 {
+    let input = parse_input_task2(path);
+    let mut packets = input.iter().map(|x| serde_json::from_str::<Packet>(&x).unwrap()).collect::<Vec<Packet>>();
+    
+    let pac2: Packet = serde_json::from_str("[[2]]").unwrap();
+    let pac6: Packet = serde_json::from_str("[[6]]").unwrap();
+    
+    packets.push(pac2.clone());
+    packets.push(pac6.clone());
+    
+    packets.sort_unstable();
+
+    let pac2 = packets.binary_search(&pac2).unwrap() + 1;
+    let pac6 = packets.binary_search(&pac6).unwrap() + 1;
+    
+    let res = pac2 as i32 * pac6 as i32;
+    println!("Result: {}", res);
+    res
 }

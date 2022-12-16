@@ -9,3 +9,5 @@ edition = "2021"
 nom = "7.1.0"
 ndarray = "0.15.6"
 itertools = "0.10.5"
+serde = { version = "1.0.130", features = ["derive"] }
+serde_json = "1.0.71"
