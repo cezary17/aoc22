@@ -13,22 +13,23 @@ mod d10;
 mod d11;
 mod d12;
 mod d13;
+mod d14;
 
 
 fn main() {
     
     #[allow(unused_variables)]
-    let path = "input/2022/day13.txt";
+    let path = "input/2022/day14.txt";
 
     #[allow(unused_variables)]
-    let test_path = "input_test/day13_test.txt";
+    let test_path = "input_test/day14_test.txt";
     
-    println!("Day 13 Task 1");
-    d13::task1(path);
-    println!("Day 13 Task 2");
-    d13::task2(path);
+    println!("Day 14 Task 1");
+    d14::task1(path);
+    println!("Day 14 Task 2");
+    d14::task2(path);
     
     // println!("Debug");
-    // d13::task1(test_path);
-    // d13::task2(test_path);
+    // d14::task1(test_path);
+    // d14::task2(test_path);
 }

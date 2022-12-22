@@ -17,4 +17,5 @@ Cargo.lock
 workspace.xml
 .idea
 .DS_Store
+.debug
 

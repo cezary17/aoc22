@@ -51,7 +51,7 @@ fn parse_input_task1(path: &str) -> Vec<(String, String)> {
 }
 
 fn parse_input_task2(path: &str) -> Vec<String> {
-    let mut input = lines_from_file(path);
+    let input = lines_from_file(path);
     input.into_iter().filter(|x| x != "").collect::<Vec<String>>()
 }
 
