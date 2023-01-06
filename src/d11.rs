@@ -245,7 +245,7 @@ mod tests {
     #[test]
     fn test_lcm() {
         let vec = vec![2,3,4,5,7];
-        let mut lcm = vec.iter().fold(1, |acc, x| find_lcm(acc, *x as u64));
+        let lcm = vec.iter().fold(1, |acc, x| find_lcm(acc, *x as u64));
         assert_eq!(lcm, 420);
     }
     

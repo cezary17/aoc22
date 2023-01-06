@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use std::str::FromStr;
 use itertools::{max, min};
-use nom::character::complete::i32;
 
 #[derive(PartialEq)]
 enum Tile {
@@ -32,6 +31,7 @@ impl Default for Cave {
     }
 }
 
+#[allow(dead_code)]
 impl Cave {
     fn print(&self) {
         for y in 0..=self.max_y {
@@ -86,8 +86,7 @@ impl Cave {
                             break;
                         }
                     }
-                },
-                _ => panic!("What?")
+                }
             }
             if current_y == self.max_y + 1 {
                 self.overflow = true;
@@ -123,7 +122,7 @@ impl FromStr for Cave {
         let mut result = Cave::default();
         
         for line in s.lines() {
-            let mut split_line = line
+            let split_line = line
                 .split(" -> ")
                 .map(|s| {
                     let mut parts = s.split(",");
@@ -144,18 +143,15 @@ impl FromStr for Cave {
                 let y_end = end.1;
                 
                 if x_start == x_end {
-                    for ny in if start.1 < end.1 { (start.1..=end.1) }  else {(end.1..=start.1)} {
+                    for ny in if start.1 < end.1 { start.1..=end.1 }  else { end.1..=start.1 } {
                         result.set_tile(start.0, ny, Tile::Rock);
                     }
                 } else if y_start == y_end {
-                    for nx in if start.0 < end.0 { (start.0..=end.0) }  else {(end.0..=start.0)} {
+                    for nx in if start.0 < end.0 { start.0..=end.0 }  else { end.0..=start.0 } {
                         result.set_tile(nx, start.1, Tile::Rock);
                     }
                 }
                 else { panic!("Bruh moment elves") }
-                
-                let x = max([x_start, x_end]).unwrap();
-                let y = max([y_start, y_end]).unwrap();
                 
                 let min_x = min([x_start, x_end]).unwrap();
                 if min_x < result.min_x {
@@ -180,6 +176,7 @@ impl FromStr for Cave {
    
 }
 
+#[allow(dead_code)]
 pub fn task1(path: &str) -> i32 {
     let mut cave: Cave = std::fs::read_to_string(path)
         .unwrap()
@@ -201,6 +198,7 @@ pub fn task1(path: &str) -> i32 {
     sand_count   
 }
 
+#[allow(dead_code)]
 pub fn task2(path: &str) -> i32 {
     let mut cave: Cave = std::fs::read_to_string(path)
         .unwrap()

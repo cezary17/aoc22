@@ -7,7 +7,7 @@ fn parse_input(path: &str, task: i32) -> (Vec<Vec<u8>>, Vec<(usize, usize)>, (us
     let input = lines_from_file(path);
     let input: Vec<Vec<u8>> = input.iter().map(|x| x.as_bytes().to_vec()).collect();
     
-    let mut start = vec![];
+    let start;
     if task == 1{
         // find the value 'S' in the input
         start = vec![(0..input.len()).cartesian_product(0..input[0].len()).find(|&(x,y)| input[x][y] == b'S').unwrap()];

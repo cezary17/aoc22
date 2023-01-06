@@ -34,6 +34,7 @@ impl Ord for Packet {
     }
 }
 
+#[allow(dead_code)]
 fn parse_input_task1(path: &str) -> Vec<(String, String)> {
     let input = lines_from_file(path);
     let mut output = Vec::new();
@@ -50,11 +51,13 @@ fn parse_input_task1(path: &str) -> Vec<(String, String)> {
     output
 }
 
+#[allow(dead_code)]
 fn parse_input_task2(path: &str) -> Vec<String> {
     let input = lines_from_file(path);
     input.into_iter().filter(|x| x != "").collect::<Vec<String>>()
 }
 
+#[allow(dead_code)]
 pub fn task1(path: &str) -> i32 {
     let input = parse_input_task1(path);
     let packets = input.iter().map(|(a, b)| (serde_json::from_str::<Packet>(&a).unwrap(), serde_json::from_str::<Packet>(&b).unwrap())).collect::<Vec<(Packet, Packet)>>();
@@ -70,6 +73,7 @@ pub fn task1(path: &str) -> i32 {
     res
 }
 
+#[allow(dead_code)]
 pub fn task2(path: &str) -> i32 {
     let input = parse_input_task2(path);
     let mut packets = input.iter().map(|x| serde_json::from_str::<Packet>(&x).unwrap()).collect::<Vec<Packet>>();
